@@ -1,0 +1,38 @@
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
+    private Context context;
+    private List<Contact> contact;
+    
+    public RecyclerAdapter(Context context, List<Contact> contsct) {
+        this.context = context;
+        this.contact = contact;
+    }
+
+    @Override
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item,parent,false);
+        return new MyViewHolder(v);
+    }
+
+    @Override
+    public void onBindViewHolder(MyViewHolder holder, int position) {
+
+        holder.name.setText(contact.get(position).getName());
+        holder.email.setText(contact.get(position).getEmail());
+    }
+
+    @Override
+    public int getItemCount() {
+        return contact.size();
+    }
+    
+    public class MyViewHolder extends RecyclerView.ViewHolder
+    {
+        private TextView name,email;
+
+        public MyViewHolder(View itemView) {
+            super(itemView);
+            name = (TextView) itemView.findViewById(R.id.txtName);
+            email = (TextView) itemView.findViewById(R.id.email);
+        }
+    }
+}
